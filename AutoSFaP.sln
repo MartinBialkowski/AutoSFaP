@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoSFaP", "AutoSFaP\AutoSFaP.csproj", "{17234E73-B598-45DC-A7AE-6D3E8723D223}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoSFaP.Converters.Tests", "AutoSFaP.Converters.Tests\AutoSFaP.Converters.Tests.csproj", "{6178F576-D274-4CD9-98A2-2E93D24B0FA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{17234E73-B598-45DC-A7AE-6D3E8723D223}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17234E73-B598-45DC-A7AE-6D3E8723D223}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17234E73-B598-45DC-A7AE-6D3E8723D223}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6178F576-D274-4CD9-98A2-2E93D24B0FA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6178F576-D274-4CD9-98A2-2E93D24B0FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6178F576-D274-4CD9-98A2-2E93D24B0FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6178F576-D274-4CD9-98A2-2E93D24B0FA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
