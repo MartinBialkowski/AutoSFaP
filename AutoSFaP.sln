@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoSFaP.Converters.Tests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoSFaP.Extensions.Tests", "AutoSFaP.Extensions.Tests\AutoSFaP.Extensions.Tests.csproj", "{BB16DC64-CDCD-4751-BC49-53E5C4649064}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoSFaP.Tests", "AutoSFaP.Tests\AutoSFaP.Tests.csproj", "{AD421BE6-8D9E-4738-AB3F-255700BE5536}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BB16DC64-CDCD-4751-BC49-53E5C4649064}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB16DC64-CDCD-4751-BC49-53E5C4649064}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB16DC64-CDCD-4751-BC49-53E5C4649064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD421BE6-8D9E-4738-AB3F-255700BE5536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD421BE6-8D9E-4738-AB3F-255700BE5536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD421BE6-8D9E-4738-AB3F-255700BE5536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD421BE6-8D9E-4738-AB3F-255700BE5536}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
