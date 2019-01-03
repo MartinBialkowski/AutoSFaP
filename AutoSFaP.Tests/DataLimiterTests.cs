@@ -1,6 +1,7 @@
 using AutoSFaP.Models;
 using FluentAssertions;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace AutoSFaP.Tests
@@ -67,6 +68,27 @@ namespace AutoSFaP.Tests
 
             // act
             var result = sut.LimitData(input, sortFields, filterFields);
+
+            // assert
+            result.Should().BeEquivalentTo(expected);
+        }
+
+        [Fact]
+        public async Task ShouldReturnPagedResult()
+        {
+            // arrange
+            var paging = new Paging(pageNumber: 1, pageLimit: 2);
+            var totalItems = input.Count();
+            var expected = new PagedResult<TestModel>
+            {
+                Results = input.Skip(paging.Offset).Take(paging.PageLimit).ToList(),
+                PageNumber = paging.PageNumber,
+                PageSize = paging.PageLimit,
+                TotalNumberOfRecords = totalItems,
+                TotalNumberOfPages = totalItems / paging.PageLimit
+            };
+            // act
+            var result = await sut.LimitDataAsync(input, null, null, paging);
 
             // assert
             result.Should().BeEquivalentTo(expected);

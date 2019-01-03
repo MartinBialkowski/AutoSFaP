@@ -30,8 +30,8 @@ namespace AutoSFaP
                 Results = await paging.Page(limitedQuery).ToList(),
                 PageNumber = paging.PageNumber,
                 PageSize = paging.PageLimit,
-                TotalNumberOfRecords = baseQuery.Count(),
-                TotalNumberOfPages = (int)Math.Ceiling(baseQuery.Count() / (double)paging.PageLimit)
+                TotalNumberOfRecords = limitedQuery.Count(),
+                TotalNumberOfPages = (int)Math.Ceiling(limitedQuery.Count() / (double)paging.PageLimit)
             };
         }
     }
