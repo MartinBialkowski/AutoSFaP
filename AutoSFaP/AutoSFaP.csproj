@@ -4,9 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Martin Białkowski</Authors>
     <Company>Progress Desire</Company>
-    <RepositoryUrl>https://embeprojects.visualstudio.com/PublicShowProject</RepositoryUrl>
+    <RepositoryUrl>https://embeprojects.visualstudio.com/PublicShowProject/_git/AutoSFaP</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <PackageProjectUrl>https://embeprojects.visualstudio.com/PublicShowProject/_git/AutoSFaP</PackageProjectUrl>
+    <PackageProjectUrl>https://embeprojects.visualstudio.com/PublicShowProject</PackageProjectUrl>
+    <PackageTags>LinqToSQL Sorting Filtering Paging</PackageTags>
+    <Description>Library for easy sorting, filtering and paging data with WebAPI and Entity Framework LinQ to SQL</Description>
+    <Copyright>MIT</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
