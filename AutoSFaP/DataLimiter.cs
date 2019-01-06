@@ -8,30 +8,30 @@ namespace AutoSFaP
 {
     public class DataLimiter<T> : IDataLimiter<T> where T : class
     {
-        public IQueryable<T> LimitData(IQueryable<T> query, SortField<T>[] sortFields, FilterField<T>[] filterFields)
+        public IQueryable<T> LimitData(IQueryable<T> baseQuery, SortField<T>[] sortFields, FilterField<T>[] filterFields)
         {
             if (filterFields != null)
             {
-                query = filterFields.Filter(query);
+                baseQuery = filterFields.Filter(baseQuery);
             }
 
             if (sortFields != null)
             {
-                query = sortFields.Sort(query);
+                baseQuery = sortFields.Sort(baseQuery);
             }
-            return query;
+            return baseQuery;
         }
 
-        public async Task<PagedResult<T>> LimitDataAsync(IQueryable<T> query, SortField<T>[] sortFields, FilterField<T>[] filterFields, Paging paging)
+        public async Task<PagedResult<T>> LimitDataAsync(IQueryable<T> baseQuery, SortField<T>[] sortFields, FilterField<T>[] filterFields, Paging paging)
         {
-            var limitedQuery = LimitData(query, sortFields, filterFields);
+            var limitedQuery = LimitData(baseQuery, sortFields, filterFields);
             return new PagedResult<T>()
             {
                 Results = await paging.Page(limitedQuery).ToList(),
                 PageNumber = paging.PageNumber,
                 PageSize = paging.PageLimit,
-                TotalNumberOfRecords = query.Count(),
-                TotalNumberOfPages = (int)Math.Ceiling(query.Count() / (double)paging.PageLimit)
+                TotalNumberOfRecords = limitedQuery.Count(),
+                TotalNumberOfPages = (int)Math.Ceiling(limitedQuery.Count() / (double)paging.PageLimit)
             };
         }
     }
