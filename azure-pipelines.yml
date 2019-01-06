@@ -11,6 +11,6 @@ pool:
 
 steps:
 - script : git show-ref 
-- script: git push https://MartinBialkowski:$(GithubKey)@github.com/MartinBialkowski/AutoSFaP.git head:master
+#- script: git push https://MartinBialkowski:$(GithubKey)@github.com/MartinBialkowski/AutoSFaP.git head:master
   
   displayName: 'Push to github'
