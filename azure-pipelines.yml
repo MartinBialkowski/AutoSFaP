@@ -10,5 +10,5 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
-- script: 'git push https://MartinBialkowski:$(GithubKey)@github.com/MartinBialkowski/AutoSFaP.git head:refs/heads/master'
+- script: 'git push https://MartinBialkowski:$(GithubKey)@github.com/MartinBialkowski/AutoSFaP.git head:master'
   displayName: 'Push to github'
