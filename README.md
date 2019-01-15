@@ -1,3 +1,5 @@
+[![Build status](https://embeprojects.visualstudio.com/PublicShowProject/_apis/build/status/AutoSFaP)](https://embeprojects.visualstudio.com/PublicShowProject/_build/latest?definitionId=6)
+
 # Introduction 
 AutoSFaP is easy way to create Filetering, Sorting and Paging from WebAPI Controller to Entity Framework. 
 You can find working project here: https://github.com/MartinBialkowski/Spike/tree/develop
