@@ -26,8 +26,11 @@ steps:
     arguments: '-c $(buildConfiguration)'
 
 - task: VSTest@2
-  displayName: Test
+  displayName: 'Test'
   inputs:
     testSelector: 'testAssemblies'
-    testAssemblyVer2: '**/*[Tt]ests/*.csproj'
+    testAssemblyVer2: |
+     **\*[Tt]est*.dll
+     !**\*TestAdapter.dll
+     !**\obj\**
     codeCoverageEnabled: true
