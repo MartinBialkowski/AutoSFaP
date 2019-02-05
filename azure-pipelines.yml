@@ -1,0 +1,36 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+- master
+- develop
+- feature/*
+
+pool:
+  vmImage: 'vs2017-win2016'
+
+variables:
+  buildConfiguration: 'Release'
+  allProjects: '**/*.csproj'
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: 'restore'
+    projects: $(allProjects)
+
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    projects: $(allProjects)
+    arguments: '-c $(buildConfiguration)'
+
+- task: VSTest@2
+  displayName: 'Test'
+  inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+     **\*[Tt]est*.dll
+     !**\*TestAdapter.dll
+     !**\obj\**
+    codeCoverageEnabled: true
