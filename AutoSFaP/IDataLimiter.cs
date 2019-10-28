@@ -8,6 +8,7 @@ namespace AutoSFaP
     {
         IQueryable<T> LimitData(IQueryable<T> query, SortField<T>[] sortFields, FilterField<T>[] filterFields);
         Task<PagedResult<T>> LimitDataAsync(IQueryable<T> query, SortField<T>[] sortFields, FilterField<T>[] filterFields, Paging paging);
+        Task<PagedResult<T>> LimitDistinctDataAsync(IQueryable<T> query, SortField<T>[] sortFields, FilterField<T>[] filterFields, Paging paging);
 
     }
 }

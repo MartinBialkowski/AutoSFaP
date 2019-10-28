@@ -4,11 +4,24 @@ namespace AutoSFaP.Tests
 {
     internal static class TestHelper
     {
-        internal static IEnumerable<TestModel> GetTestData()
+        internal static IEnumerable<TestModel> GetTestDataDistinct()
         {
             return new List<TestModel>
             {
                 new TestModel{Name = "Martin", Job = "Dev"},
+                new TestModel{Name = "Bob", Job = "Dev"},
+                new TestModel{Name = "John", Job = "Tester"},
+                new TestModel{Name = "Steve", Job = "Manager"}
+            };
+        }
+
+        internal static IEnumerable<TestModel> GetTestDataDuplicated()
+        {
+            var Martin = new TestModel { Name = "Martin", Job = "Dev" };
+            return new List<TestModel>
+            {
+                Martin,
+                Martin,
                 new TestModel{Name = "Bob", Job = "Dev"},
                 new TestModel{Name = "John", Job = "Tester"},
                 new TestModel{Name = "Steve", Job = "Manager"}
