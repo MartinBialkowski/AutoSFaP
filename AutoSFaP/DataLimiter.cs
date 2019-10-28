@@ -25,6 +25,17 @@ namespace AutoSFaP
         public async Task<PagedResult<T>> LimitDataAsync(IQueryable<T> baseQuery, SortField<T>[] sortFields, FilterField<T>[] filterFields, Paging paging)
         {
             var limitedQuery = LimitData(baseQuery, sortFields, filterFields);
+            return await CreatePagedResultAsync(limitedQuery, paging);
+        }
+
+        public async Task<PagedResult<T>> LimitDistinctDataAsync(IQueryable<T> baseQuery, SortField<T>[] sortFields, FilterField<T>[] filterFields, Paging paging)
+        {
+            var limitedQuery = LimitData(baseQuery, sortFields, filterFields).Distinct();
+            return await CreatePagedResultAsync(limitedQuery, paging);
+        }
+
+        private async Task<PagedResult<T>> CreatePagedResultAsync(IQueryable<T> limitedQuery, Paging paging)
+        {
             return new PagedResult<T>()
             {
                 Results = await paging.Page(limitedQuery).ToList(),

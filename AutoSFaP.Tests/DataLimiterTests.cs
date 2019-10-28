@@ -10,18 +10,20 @@ namespace AutoSFaP.Tests
     {
         private readonly DataLimiter<TestModel> sut;
         private readonly IQueryable<TestModel> input;
+        private readonly IQueryable<TestModel> inputDulpicated;
 
         public DataLimiterTests()
         {
             sut = new DataLimiter<TestModel>();
-            input = TestHelper.GetTestData().AsQueryable();
+            input = TestHelper.GetTestDataDistinct().AsQueryable();
+            inputDulpicated = TestHelper.GetTestDataDuplicated().AsQueryable();
         }
 
         [Fact]
         public void ShouldReturnUnchangedDataWhenFilterAndSortModelsNotSpecyfied()
         {
             // arrange
-            var expected = TestHelper.GetTestData().ToList();
+            var expected = TestHelper.GetTestDataDistinct().ToList();
 
             // act
             var result = sut.LimitData(input, null, null).ToList();
@@ -74,21 +76,42 @@ namespace AutoSFaP.Tests
         }
 
         [Fact]
-        public async Task ShouldReturnPagedResult()
+        public async Task ShouldReturnPagedResultWithDuplicates()
+        {
+            // arrange
+            var paging = new Paging(pageNumber: 1, pageLimit: 3);
+            var totalItems = inputDulpicated.Count();
+            var expected = new PagedResult<TestModel>
+            {
+                Results = inputDulpicated.Skip(paging.Offset).Take(paging.PageLimit).ToList(),
+                PageNumber = paging.PageNumber,
+                PageSize = paging.PageLimit,
+                TotalNumberOfRecords = totalItems,
+                TotalNumberOfPages = 2
+            };
+            // act
+            var result = await sut.LimitDataAsync(inputDulpicated, null, null, paging);
+
+            // assert
+            result.Should().BeEquivalentTo(expected);
+        }
+
+        [Fact]
+        public async Task ShouldReturnDistinctPagedResult()
         {
             // arrange
             var paging = new Paging(pageNumber: 1, pageLimit: 2);
             var totalItems = input.Count();
             var expected = new PagedResult<TestModel>
             {
-                Results = input.Skip(paging.Offset).Take(paging.PageLimit).ToList(),
+                Results = input.Distinct().Skip(paging.Offset).Take(paging.PageLimit).ToList(),
                 PageNumber = paging.PageNumber,
                 PageSize = paging.PageLimit,
                 TotalNumberOfRecords = totalItems,
-                TotalNumberOfPages = totalItems / paging.PageLimit
+                TotalNumberOfPages = 2
             };
             // act
-            var result = await sut.LimitDataAsync(input, null, null, paging);
+            var result = await sut.LimitDistinctDataAsync(inputDulpicated, null, null, paging);
 
             // assert
             result.Should().BeEquivalentTo(expected);
