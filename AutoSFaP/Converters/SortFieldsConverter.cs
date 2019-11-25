@@ -21,13 +21,7 @@ namespace AutoSFaP.Converters
 
         private static SortField<T> ConvertToSortField(string sortData)
         {
-            var propertyName = sortData.Trim('-', '+');
-            var propertyInfo = typeof(T).GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-
-            if(propertyInfo == null)
-            {
-                throw new ArgumentException($"Could not find property with name {propertyName}");
-            }
+            var propertyInfo = FindPropertyCaseInsensitive(sortData);
 
             var sortField = new SortField<T>
             {
@@ -36,6 +30,19 @@ namespace AutoSFaP.Converters
             };
 
             return sortField;
+        }
+
+        private static PropertyInfo FindPropertyCaseInsensitive(string sortData)
+        {
+            var propertyName = sortData.Trim('-', '+');
+            var propertyInfo = typeof(T).GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+
+            if (propertyInfo == null)
+            {
+                throw new ArgumentException($"Could not find property with name {propertyName}");
+            }
+
+            return propertyInfo;
         }
     }
 }
