@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using AutoSFaP.Models;
+using System;
+using System.Reflection;
 
 namespace AutoSFaP.Converters
 {
@@ -19,10 +21,18 @@ namespace AutoSFaP.Converters
 
         private static SortField<T> ConvertToSortField(string sortData)
         {
+            var propertyName = sortData.Trim('-', '+');
+            var propertyInfo = typeof(T).GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+
+            if(propertyInfo == null)
+            {
+                throw new ArgumentException($"Could not find property with name {propertyName}");
+            }
+
             var sortField = new SortField<T>
             {
                 SortOrder = sortData.EndsWith("-") ? SortOrder.Descending : SortOrder.Ascending,
-                PropertyName = sortData.Trim('-', '+')
+                PropertyName = propertyInfo.Name
             };
 
             return sortField;
