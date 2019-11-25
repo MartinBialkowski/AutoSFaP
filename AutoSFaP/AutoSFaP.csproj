@@ -10,7 +10,7 @@
     <PackageTags>LinqToSQL Sorting Filtering Paging</PackageTags>
     <Description>Library for easy sorting, filtering and paging data with WebAPI and Entity Framework LinQ to SQL</Description>
     <Copyright>MIT</Copyright>
-    <Version>1.1.0-rc</Version>
+    <Version>1.1.0-rc2</Version>
   </PropertyGroup>
 
   <ItemGroup>
