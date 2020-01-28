@@ -1,13 +1,12 @@
-﻿using AutoMapper;
-using AutoSFaP.Models;
+﻿using AutoSFaP.Models;
 using System;
 using System.Reflection;
 
 namespace AutoSFaP.Converters
 {
-    public class SortFieldsConverter<T> : ITypeConverter<string, SortField<T>[]> where T : class
+    public static class SortFieldsConverter<T> where T : class
     {
-        public SortField<T>[] Convert(string source, SortField<T>[] destination, ResolutionContext context)
+        public static SortField<T>[] Convert(string source)
         {
             var sortData = source.Split(',');
             var result = new SortField<T>[sortData.Length];
