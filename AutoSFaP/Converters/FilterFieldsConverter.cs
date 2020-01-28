@@ -1,12 +1,11 @@
-﻿using AutoMapper;
-using AutoSFaP.Models;
+﻿using AutoSFaP.Models;
 using System.Linq;
 
 namespace AutoSFaP.Converters
 {
-    public class FilterFieldsConverter<TSource, TResult> : ITypeConverter<TSource, FilterField<TResult>[]> where TResult : class
+    public static class FilterFieldsConverter<TSource, TResult> where TResult : class
     {
-        public FilterField<TResult>[] Convert(TSource source, FilterField<TResult>[] destination, ResolutionContext context)
+        public static FilterField<TResult>[] Convert(TSource source)
         {
             return (from property in typeof(TSource).GetProperties()
                     let propertyValue = property.GetValue(source)

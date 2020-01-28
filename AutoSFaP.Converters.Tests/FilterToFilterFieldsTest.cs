@@ -9,16 +9,13 @@ namespace AutoSFaP.Converters.Test
         [Fact]
         public void ShouldConvertOnlyNotNullProperties()
         {
-            var converter = new FilterFieldsConverter<TestModelDto, TestModel>();
-
-            // assign
+            // arrange
             const int expectedLength = 1;
             var source = new TestModelDto
             {
                 FieldName = null,
                 Id = 1
             };
-            var result = new FilterField<TestModel>[0];
             var expected = new FilterField<TestModel>[expectedLength];
             expected[0] = new FilterField<TestModel>
             {
@@ -26,7 +23,7 @@ namespace AutoSFaP.Converters.Test
                 FilterValue = 1
             };
             // act
-            result = converter.Convert(source, result, null);
+            var result = FilterFieldsConverter<TestModelDto, TestModel>.Convert(source);
             // assert
             result[0].Should().BeEquivalentTo(expected[0]);
         }
