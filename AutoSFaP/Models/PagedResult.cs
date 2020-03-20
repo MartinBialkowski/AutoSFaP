@@ -12,7 +12,7 @@ namespace AutoSFaP.Models
 
         public int TotalNumberOfRecords { get; set; }
 
-        public List<T> Results { get; set; }
+        public IEnumerable<T> Results { get; set; }
     }
 }
 
